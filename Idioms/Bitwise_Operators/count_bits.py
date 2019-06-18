@@ -1,6 +1,11 @@
 """
-Primitive Types basic
-Bitwise Operators
+The following program
+tests bits one at a time starting the
+least-significant bit (right-most).
+
+It illustrates shifting and masking;
+it also avoid hard-coding the size of the
+interger word.
 """
 
 

@@ -3,7 +3,7 @@
 ### Overview
 
 Bitwise operators are operators that operates on binary level.
-```
+```python
 & (bitwise AND)
 | (bitwise OR)
 ~ (bitwise NOT)
@@ -29,6 +29,18 @@ The & operator compares each binary digit of two integers and returns a new inte
 ![example](./imgs/and_example.png)
 
 Notice how each binary digit of 37 and 23 are compared, and the result has a 1 wherever both 37 and 23 had a 1, and the result has a 0 otherwise.
+
+A neat little use of the & operator is to check whether a number is even or odd. For integers we can simply check the rightmost bit (also called the least significant bit) to determine if the integer is odd or even. This is because when converting to base 10, the rightmost bit represents 20 or 1. When the rightmost bit is 1, we know that our number is odd since we're adding 1 to a bunch of powers of two which will always be even. When the rightmost bit is 0, we know our number will be even, since it simply consists of adding up a bunch of even numbers.
+
+```python
+def odd_even(x: int) -> str:
+    if x & 1:
+        return "odd"
+    else:
+        return "even"
+```
+
+As per Jason `"On my computer, this method was about 66% faster than using randInt % 2 to check for even and odd numbers. That's quite a performance boost!"`
 ___
 
 ### References:
