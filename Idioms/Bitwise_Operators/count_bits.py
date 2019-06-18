@@ -9,8 +9,10 @@ def count_bits(x: int) -> int:
 
     while x:
         # bitwise &, comapres binary of each int
-        # ex:
+        # ex: imgs/and_example.png
         num_bits += x & 1
+
+        # >>= (bitwise right shift and assignment)
         x >>= 1
     return num_bits
 
