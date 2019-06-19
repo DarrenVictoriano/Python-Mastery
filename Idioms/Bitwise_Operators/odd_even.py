@@ -10,4 +10,4 @@ def odd_even(x: int) -> str:
         return "even"
 
 
-print(odd_even(3.4))
+print(odd_even(30001000990000090))
