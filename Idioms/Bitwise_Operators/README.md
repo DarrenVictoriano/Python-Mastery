@@ -4,19 +4,19 @@
 
 Bitwise operators are operators that operates on binary level.
 ```python
+# Bitwise operator
 & (bitwise AND)
 | (bitwise OR)
 ~ (bitwise NOT)
 ^ (bitwise XOR)
 << (bitwise left shift)
 >> (bitwise right shift)
->>> (bitwise unsigned right shift)
+# Bitwise operator and Assignment
 &= (bitwise AND assignment)
 |= (bitwise OR assignment)
 ^= (bitwise XOR assignment)
 <<= (bitwise left shift and assignment)
 >>= (bitwise right shift and assignment)
->>>= (bitwise unsigned right shift and assignment)
 ```
 
 ___
@@ -43,8 +43,62 @@ def odd_even(x: int) -> str:
 As per Jason `"On my computer, this method was about 66% faster than using randInt % 2 to check for even and odd numbers. That's quite a performance boost!"`
 
 ## The | Operator
-The bitwise OR operator, |. As you may have guessed, the | operator is to the || operator as the & operator is to the && operator. The | operator compares each binary digit across two integers and gives back a 1 if either of them are 1. Again, this is similar to the || operator with booleans.
+The bitwise OR operator. As you may have guessed, the | operator is to the || operator as the & operator is to the && operator. The | operator compares each binary digit across two integers and gives back a 1 if either of them are 1. Again, this is similar to the || operator with booleans.
+
+Let's take a look at a possible situation. We're building a pop-up window class. At the bottom of it, we can have a Yes, No, Okay, or Cancel button or any combination of those - how should we do this?
+
+
+```python
+class PopupWindow():
+
+    def __init__(self):
+        self.YES = 1
+        self.NO = 2
+        self.OKAY = 4
+        self.CANCEL = 8
+
+    def show(buttons: int):
+        if buttons & self.YES:
+            # show Yes button
+        if buttons & self.NO:
+            # show No button
+        if buttons & self.OKAY:
+            # show Ok button
+        if buttons & self.CANCEL:
+            # show Cancel button
+
+PopupWindow.show(PopupWindow.YES | PopupWindow.NO | PopupWindow.CANCEL);
+```
+What's going on? It's important to note that our constants in the second example are all powers of two. So, if we look at their binary forms, we will notice they all have one digit equal to 1, and the rest equal to 0. In fact, they each have a different digit equal to 1. This means that no matter how we combine them with |, every combination will give us a unique number. Looking at it in a different way, out result of our | statement will be a binary number with a 1 wherever our options had a 1.
+
+For our current example we have PopupWindow.YES | PopupWindow.NO | PopupWindow.CANCEL which is equivalent to 1 | 2 | 8 which rewritten in binary is 00000001 | 00000010 | 00001000 which gives us a result of 00001011.
+
+Now, in our showPopup() function, we use & to check which options were passed in. For example, when we check buttons & YES, all the bits in YES are equal to 0 except the very rightmost one. So, we are essentially checking if the rightmost bit in buttons is a 1 or not. If it is, buttons & YES will not equal 0 and anything in the if statement will be executed. Conversely, if the rightmost bit in buttons is 0, buttons & YES will equal 0, and the if statement will not be executed.
 ___
 
-### References:
+## The ~ Operator
+
+The bitwise NOT operator is slightly different than the two we've looked at so far. Instead of taking an integer on each side of it, it takes an integer only after it. This is just like the ! operator, and, not surprisingly, it does a similar thing. In fact, just as ! flips a boolean from `true` to `false` or vice versa, the ~ operator reverses each binary digit in an integer: from 0 to 1 and 1 to 0:
+
+![example](./imgs/not_table.png)
+
+A quick example. Say we have the integer `37`, or `00100101`. `~37` is then `11011010`. What's the base 10 value of this? Well...
+
+### Two's Complement, `uint` vs `int`
+
+Now the fun begins! We're going to take a closer look at binary numbers on a computer. Let's start with the uint. As mentioned before, a uint is typically 4 bytes or 32 bits long, meaning it has 32 binary digits. This is easy to understand: to get the base 10 value we simply convert the number to base 10 regularly. We'll always get a positive number.
+
+But how about the int? It also uses 32 bits, but how does it store negative numbers? If you guessed that the first digit is used to store the sign, you're on the right path. Let's take a look at the two's complement system for storing binary numbers. While we won't go into all the details here, a two's complement system is used because it makes binary arithmetic easy.
+
+To find the two's complement of a binary number, we simply flip all the bits (i.e. do what the ~ operator does) and add one to the result. Let's try this out once:
+
+![example](./imgs/twos_complement_37.png)
+
+We then define our result as the value -37. Why do this complicated process and not just flip the very first bit and call that -37?
+
+Well, let's take a simple expression 37 + -37. We all know this should equal 0, and when we add the 37 to its two's complement, that's what we get:
+
+___
+
+### Reference Article:
 [Understanding Bitwise Operators](https://code.tutsplus.com/articles/understanding-bitwise-operators--active-11301) by Jason Killian
