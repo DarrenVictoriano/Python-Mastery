@@ -67,14 +67,15 @@ class PopupWindow():
         if buttons & self.CANCEL:
             # show Cancel button
 
-PopupWindow.show(PopupWindow.YES `|` PopupWindow.NO `|` PopupWindow.CANCEL);
+# Function call
+PopupWindow.show(PopupWindow.YES | PopupWindow.NO | PopupWindow.CANCEL);
 ```
 What's going on? It's important to note that our constants in the second example are all powers of two. So, if we look at their binary forms, we will notice they all have one digit equal to 1, and the rest equal to 0. In fact, they each have a different digit equal to 1. This means that no matter how we combine them with `|`, every combination will give us a unique number. Looking at it in a different way, out result of our `|` statement will be a binary number with a 1 wherever our options had a 1.
 
 For our current example we have `PopupWindow.YES | PopupWindow.NO | PopupWindow.CANCEL` which is equivalent to `1 | 2 | 8` which rewritten in binary is `00000001 `|` 00000010 `|` 00001000` which gives us a result of `00001011`.
 
 Now, in our `showPopup()` function, we use `&` to check which options were passed in. For example, when we check `buttons & YES`, all the bits in YES are equal to 0 except the very rightmost one. So, we are essentially checking if the rightmost bit in buttons is a 1 or not. If it is, `buttons & YES` will not equal 0 and anything in the if statement will be executed. Conversely, if the rightmost bit in buttons is 0, buttons `&` YES will equal 0, and the if statement will not be executed.
-___
+
 
 ## The `~` Operator
 
