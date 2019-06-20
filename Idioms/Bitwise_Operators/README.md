@@ -129,7 +129,39 @@ Let's take a look at our usual example:
 
 The ^ operator does have uses - it's especially good for toggling binary digits - but we won't cover any practical applications in this article.
 
+## The `<<` Operator
 
+We're now on the bitshift operators, specifically the bitwise left shift operator here.
+
+These work a little differently than before. Instead of comparing two integers like &, |, and ^ did, these operators shift an integer. On the left side of the operator is the integer that is being shifted, and on the right is how much to shift by. So, for example, 37 << 3 is shifting the number 37 to the left by 3 places. Of course, we're working with the binary representation of 37.
+
+Let's take a look at this example (remember, we're just going to pretend integers only have 8 bits instead of 32). Here we have the number 37 sitting on its nice block of memory 8 bits wide.
+
+![example](./imgs/left_shift_1.png)
+
+Alright, let's slide all the digits over to the left by 3, as `37 << 3` would do:
+
+![example](./imgs/left_shift_2.png)
+
+But now we have a small problem - what do we do with the 3 open bits of memory where we moved the digits from?
+
+![example](./imgs/left_shift_3.png)
+
+Of course! Any empty spots are just replaced with 0s. We end up with 00101000 . And that's all there is to the left bitshift. Keep in mind that Flash always thinks the result of a left bitshift is an `int`, not a `uint`. So if you need a `uint` for some reason, you'll have to cast it to a `uint` like this: `uint(37 << 3)`. This casting doesn't actually change any of the binary information, just how Flash interprets it (the whole two's complement thing).
+
+An interesting feature of the left bitshift is that it is the same as multiplying a number by two to the shiftAmount-th power. So, `37 << 3 == 37 * Math.pow(2,3) == 37 * 8.` If you can use the left shift instead of Math.pow, you'll see a huge performance increase.
+
+*You may have noticed that the binary number we ended up with did not equal 37 * 8. This is just from our use of only 8 bits of memory for integers; if you try it in ActionScript, you'll get the correct result.*
+
+## The `>>` Operator
+
+Now that we understand the left bitshift, the next one, the right bitshift, will be easy. Everything slides to the right the amount we specify. The only slight difference is what the empty bits get filled with.
+
+If we're starting with a negative number (a binary number where the leftmost bit is a 1), all the empty spaces are filled with a 1. If we're starting with a positive number (where the leftmost bit, or most significant bit, is a 0), then all the empty spaces are filled with a 0. Again, this all goes back to two's complement.
+
+While this sounds complicated, it basically just preserves the sign of the number we start with. So `-8 >> 2 == -2` while `8 >> 2 == 2`. I'd recommend trying those out on paper yourself.
+
+Since `>>` is the opposite of `<<`, it's not surprising that shifting a number to the right is the same as dividing it by 2 to the power of shiftAmount. You may have noticed this from the example above. Again, if you can use this to avoid calling Math.pow, you'll get a significant performance boost.
 ___
 
 ### Reference Article:
