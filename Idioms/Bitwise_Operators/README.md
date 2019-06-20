@@ -28,7 +28,9 @@ The `&` operator compares each binary digit of two integers and returns a new in
 
 ![example](./imgs/and_example.png)
 
-Notice how each binary digit of 37 and 23 are compared, and the result has a 1 wherever both 37 and 23 had a 1, and the result has a 0 otherwise. (use the `'`&`'` truth table)
+Notice how each binary digit of 37 and 23 are compared, and the result has a 1 wherever both 37 and 23 had a 1, and the result has a 0 otherwise. (use the `&` truth table)
+
+![example](./imgs/and_table.png)
 
 A neat little use of the `&` operator is to check whether a number is even or odd. For integers we can simply check the rightmost bit (also called the least significant bit) to determine if the integer is odd or even. This is because when converting to base 10, the rightmost bit represents 20 or 1. When the rightmost bit is 1, we know that our number is odd since we're adding 1 to a bunch of powers of two which will always be even. When the rightmost bit is 0, we know our number will be even, since it simply consists of adding up a bunch of even numbers.
 
@@ -44,6 +46,8 @@ As per Jason `"On my computer, this method was about 66% faster than using randI
 
 ## The `|` Operator
 The bitwise OR operator. As you may have guessed, the `|` operator is to the `||` operator as the `&` operator is to the `&&` operator. The `|` operator compares each binary digit across two integers and gives back a 1 if either of them are 1. Again, this is similar to the `||` operator with booleans.
+
+![example](./imgs/or_table.png)
 
 Let's take a look at a possible situation. We're building a pop-up window class. At the bottom of it, we can have a Yes, No, Okay, or Cancel button or any combination of those - how should we do this?
 
@@ -98,6 +102,33 @@ To find the two's complement of a binary number, we simply flip all the bits (i.
 We then define our result as the value -37. Why do this complicated process and not just flip the very first bit and call that -37?
 
 Well, let's take a simple expression 37 + -37. We all know this should equal 0, and when we add the 37 to its two's complement, that's what we get:
+
+![example](./imgs/37_plus_neg37.png)
+
+Notice that since our integers only hold eight binary digits, the 1 in our result is dropped, and we end up with 0, as we should.
+
+There is also a little shortcut to do this by hand: starting from the right, work to the left until you reach a 1. Flip all the bits to the left of this first 1.
+
+![example](./imgs/twos_complement_short_37.png)
+
+When we're looking at a signed binary number (in other words, one that can be negative, an int not a uint), we can look at the leftmost digit to tell whether it's negative or positive. If it's a 0, then the number is positive and we can convert to base 10 simply by calculating its base 10 value. If the leftmost bit is a 1, then the number is negative, so we take the two's complement of the number to get its positive value and then simply add a negative sign.
+
+For example, if we have 11110010, we know it is a negative number. We can find it's two's complement by flipping all the digits to the left of the rightmost 1, giving us 00001110. This equals 13, so we know 11110010 equals -13.
+
+## The `^` Operator
+
+The bitwise XOR operator. There is no equivalent boolean operator to this one.
+
+The `^` operator is similar to the `&` and `|` operators in that it takes an `int` or `uint` on both sides. When it is calculating the resulting number, it again compares the binary digits of these numbers. If one or the other is a 1, it will insert a 1 in to the result, otherwise it will insert a 0. This is where the name XOR, or "exclusive or" comes from.
+
+![example](./imgs/xor_table.png)
+
+Let's take a look at our usual example:
+
+![example](./imgs/xor_example.png)
+
+The ^ operator does have uses - it's especially good for toggling binary digits - but we won't cover any practical applications in this article.
+
 
 ___
 
