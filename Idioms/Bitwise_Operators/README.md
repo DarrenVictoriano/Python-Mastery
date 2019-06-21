@@ -164,5 +164,5 @@ While this sounds complicated, it basically just preserves the sign of the numbe
 Since `>>` is the opposite of `<<`, it's not surprising that shifting a number to the right is the same as dividing it by 2 to the power of shiftAmount. You may have noticed this from the example above. Again, if you can use this to avoid calling Math.pow, you'll get a significant performance boost.
 ___
 
-### Reference Article:
+### See Full Article Here:
 [Understanding Bitwise Operators](https://code.tutsplus.com/articles/understanding-bitwise-operators--active-11301) by Jason Killian
