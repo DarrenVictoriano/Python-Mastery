@@ -91,7 +91,7 @@ type(a)
 array.array
 ```
 
-[Python Array documentation](arraydocs) page provides more information about the various type codes available and the functionalities provided by the `array` module.
+[Python Array documentation][arraydocs] page provides more information about the various type codes available and the functionalities provided by the `array` module.
 
 [arraydocs]:https://docs.python.org/3/library/array.html
 
