@@ -98,6 +98,7 @@ But how about the int? It also uses 32 bits, but how does it store negative numb
 To find the two's complement of a binary number, we simply flip all the bits (i.e. do what the `~` operator does) and add one to the result. Let's try this out once:
 
 ![example](./imgs/twos_complement_37.png)
+> Add 1 to the flip bits, `(11011010 + 00000001)`
 
 We then define our result as the value -37. Why do this complicated process and not just flip the very first bit and call that -37?
 
