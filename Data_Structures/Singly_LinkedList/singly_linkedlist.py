@@ -1,7 +1,7 @@
 """
 this module is an implementaion of the singly linkedlist
 node class:
-    self.val
+    self.data
     self.next
 
 linkedlist class:
@@ -13,16 +13,16 @@ class Node():
     """ node class for singly-linkedlist """
 
     def __init__(self, data, next_node=None):
-        self.val = data
+        self.data = data
         self.next = next_node
 
     def get_data(self):
         """ getter function for node value """
-        return self.val
+        return self.data
 
     def set_data(self, data):
         """ setter function for node value """
-        self.val = data
+        self.data = data
 
     def get_next(self):
         """ getter for next node """
@@ -52,7 +52,7 @@ class SinglyLinkedList():
         # traverse linearly until the end node
         while cur_node:
             # print each data
-            print(cur_node.val)
+            print(cur_node.data)
             # assign var to the next node
             cur_node = cur_node.get_next()
 
