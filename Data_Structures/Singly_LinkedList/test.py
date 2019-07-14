@@ -2,7 +2,7 @@ from singly_linkedlist import SinglyLinkedList
 
 lst = SinglyLinkedList()
 for i in range(0, 10):
-    lst.insert_node(i)
+    lst.insert(i)
 
 print("all")
 lst.print_all()

@@ -56,7 +56,7 @@ class SinglyLinkedList():
             # assign var to the next node
             cur_node = cur_node.get_next()
 
-    def insert_node(self, data):
+    def insert(self, data):
         """ this will insert new node as head, so O(1) time complexity """
         # make a new node using the data and
         # pass the current head as the next node
