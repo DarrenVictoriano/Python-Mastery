@@ -3,22 +3,23 @@ This module merge two singly LinkedList.
 This assume that the LinkedLists are sorted.
 """
 
-from singly_linkedlist import SinglyLinkedList
+from simple_singly_list import ListNode
 
 
-def merge_two_sorted_list(L1: SinglyLinkedList,
-                          L2: SinglyLinkedList) -> SinglyLinkedList:
+def merge_two_sorted_list(L1: 'ListNode',
+                          L2: 'ListNode') -> 'ListNode':
 
     # Creates place holder for the ListNodes
-    dummy_head = tail = SinglyLinkedList()
+    dummy_head = tail = ListNode()
 
     while L1 and L2:
         if L1.data < L2.data:
-            tail.next_node, L1 = L1, L1.next_node
+            tail.next = L1
+            L1 = L1.next
         else:
-            tail.next_node, L2 = L2, L2.next_node
-        tail = tail.next_node
+            tail.next = L2
+            L2 = L2.next
 
-    # Append the remaining node of L1 or L2
-    tail.next_node = L1 or L2
-    return dummy_head.next_node
+    # Appends the remaining node of L1 and L2
+    tail.next = L1 or L2
+    return dummy_head.next
