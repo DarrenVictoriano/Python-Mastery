@@ -10,7 +10,7 @@ Second subarray is [m+1..r]
 
 def merge_sort(arr: list) -> list:
     if len(arr) > 1:
-        mid = len(arr) // 2  # Finding the mid of the array
+        mid = len(arr) // 2  # Finding the mid of the array - floored division
         L = arr[:mid]  # Dividing the array elements
         R = arr[mid:]  # into 2 halves using slice
 
