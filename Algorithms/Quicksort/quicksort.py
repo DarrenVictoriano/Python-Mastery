@@ -9,7 +9,11 @@ Python implementation of  Quicksort algorithmn
 
 
 def quicksort(arr: list) -> list:
-    """ takes unsorted list and return a sorted list"""
+    """
+    desc: sort an array in descending order
+    parameter: list/array
+    return: list/array
+    """
     if len(arr) < 2:
         return arr
     else:
