@@ -17,10 +17,14 @@ Is one of the most used variant if DFS (Depth First Search). Inorder Traversal o
 ### Code:
 ```python
 def inorderTraversal(root: TreeNode) -> None:
-	if root:
-		inorderTraversal(root.left)
-		print(root.data + " ")
-		inorderTraversal(root.right)
+	if not root:
+		return
+
+	inorderTraversal(root.left)
+
+	print(root.data + " ")
+
+	inorderTraversal(root.right)
 ```
 
 ___
@@ -40,10 +44,13 @@ Preorder Traversal is another variant of DFS. Where atomic operations in a recur
 ### Code:
 ```python
 def preorderTraversal(root: TreeNode) -> None:
-	if root:
-		print(root.data + " ")
-		preorderTraversal(root.left)
-		preorderTraversal(root.right)
+	if not root:
+		return
+
+	print(root.data + " ")
+
+	preorderTraversal(root.left)
+	preorderTraversal(root.right)
 ```
 
 ___
@@ -63,10 +70,13 @@ Similar goes with Postorder Traversal. Where we visit the left subtree and the r
 ### Code:
 ```python
 def postorderTraversal(root: TreeNode) -> None:
-	if root:
-		postorderTraversal(root.left)
-		postorderTraversal(root.right)
-		print(root.data + " ")
+	if not root:
+		return
+
+	postorderTraversal(root.left)
+	postorderTraversal(root.right)
+
+	print(root.data + " ")
 ```
 
 ___
