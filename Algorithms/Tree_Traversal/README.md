@@ -98,7 +98,7 @@ def levelorderTraversal(root: TreeNode) -> None:
 	if not root:
 		return
 
-    queue = deque()
+	queue = deque()
 	queue.append(root)
 
 	while queue:
